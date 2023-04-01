@@ -28,7 +28,6 @@ router.get('/*', ensureAuthenticated, (req, res) => {
         { sender: req.params[0], receiver: req.user.name },
       ],
     }).catch((err) => console.log(err)),
-    ,
   ])
     .then(([users, messages]) => {
       res.render('chat', {
