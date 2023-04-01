@@ -33,8 +33,12 @@ module.exports = function (passport) {
   });
 
   passport.deserializeUser((id, done) => {
-    User.findById(id, (err, user) => {
-      done(err, user);
-    });
+    User.findById(id)
+      .then((user) => {
+        done(null, user);
+      })
+      .catch((error) => {
+        done(null, false, { message: error });
+      });
   });
 };

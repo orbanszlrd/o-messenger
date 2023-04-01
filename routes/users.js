@@ -4,10 +4,8 @@ const passport = require('passport');
 
 const router = express.Router();
 
-// User model
 const User = require('../models/User');
 
-// Login Page
 router.get('/login', (req, res) => {
   if (req.user == undefined) {
     res.render('login');
@@ -17,7 +15,6 @@ router.get('/login', (req, res) => {
   }
 });
 
-// Login Handle
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
     successRedirect: '/chat',
@@ -26,14 +23,17 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-// Logout Handle
 router.get('/logout', (req, res) => {
-  req.logout();
-  req.flash('success_msg', 'You are logged out');
-  res.redirect('/users/login');
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+
+    req.flash('success_msg', 'You are logged out');
+    res.redirect('/users/login');
+  });
 });
 
-// Register Page
 router.get('/register', (req, res) => {
   if (req.user == undefined) {
     res.render('register');
@@ -43,18 +43,15 @@ router.get('/register', (req, res) => {
   }
 });
 
-// Register Handle
 router.post('/register', (req, res) => {
   const { name, email, password, password2 } = req.body;
 
   let errors = [];
 
-  // Check required fields
   if (!name || !email || !password || !password2) {
     errors.push({ msg: 'Please fill all fields' });
   }
 
-  // Chec passwords match
   if (password != password2) {
     errors.push({ msg: 'Passwords do not match' });
   }
@@ -72,11 +69,9 @@ router.post('/register', (req, res) => {
       password2,
     });
   } else {
-    // Validation passed
     User.findOne({ email: email })
       .then((user) => {
         if (user) {
-          // User exists
           errors.push({ msg: 'Email is already registered' });
 
           res.render('register', {
@@ -93,13 +88,10 @@ router.post('/register', (req, res) => {
             password,
           });
 
-          // Hash Password
           bcrypt.genSalt(10, (err, salt) =>
             bcrypt.hash(newUser.password, salt, (err, hash) => {
               if (err) throw err;
-              // Set password to hashed
               newUser.password = hash;
-              // Save user
               newUser
                 .save()
                 .then((user) => {
