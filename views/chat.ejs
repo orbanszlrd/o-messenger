@@ -1,0 +1,49 @@
+<%- include('./partials/navbar') %>
+
+<script src="/js/omessenger.min.js"></script>
+
+<div class="row h-100 o2-chat">
+    <div class="col-sm-3 h-100 o2-users">
+        <ul id="o2UserList" class="list-group">
+            <% if (typeof users != 'undefined') { %>
+            <% users.forEach(function(user) { %>
+            <li id="user:<%= user%>" class="list-group-item">
+                <% if (user == receiver.name) { %>
+                <a class="user-item user-item-active" href="/chat/<%= user%>"><%= user%></a>
+                <% } else {%>
+                <a class="user-item" href="/chat/<%= user%>"><%= user%></a>
+                <% } %>
+            </li>
+            <% }); %>
+            <% } %>
+        </ul>
+    </div>
+    <div class="col-sm-9 h-100 d-none o2-messages">
+
+        <ul id="o2MessageList" class="list-group">
+            <% if (typeof messages != 'undefined') { %>
+            <% messages.forEach(function(message) { %>
+            <% if (message.sender == user.name) { %>
+            <li>
+                <div class="o2-sender-right"><%= message.sender%> <span class="fa fa-user"></span></div>
+                <div class="o2-speech-bubble-right"><%= message.message%></div>
+            </li>
+            <% } else {%>
+            <li>
+                <div class="o2-sender-left"><span class="fa fa-user"></span> <%= message.sender%></span></div>
+                <div class="o2-speech-bubble-left"><%= message.message%></div>
+            </li>
+            <% } %>
+            <% }); %>
+            <% } %>
+        </ul>
+
+        <form action="#" class="w-100 position-absolute fixed-bottom">
+            <input id="o2Token" type="hidden" value="<%= user.token %>" readonly="readonly" />
+            <input id="o2Sender" type="hidden" value="<%= user.name %>" readonly="readonly" />
+            <input id="o2Receiver" type="hidden" value="<%= receiver.name %>" readonly="readonly" />
+            <input class="form-control rounded-0" id="o2MessageInput" autocomplete="off" />
+            <button class="btn btn-success btn-block rounded-0">Send</button>
+        </form>
+    </div>
+</div>

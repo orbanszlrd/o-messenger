@@ -1,0 +1,157 @@
+/*
+default
+*/
+body,
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+/*
+chat: default
+*/
+div.o2-chat ul li {
+  list-style-type: none;
+}
+
+div.o2-chat ul.list-group {
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  height: auto;
+  width: 100%;
+  padding: 16px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+chat: messages
+*/
+div.o2-chat div.o2-messages {
+  margin: 0;
+  padding: 0;
+  display: table;
+}
+
+div.o2-chat div.o2-messages ul {
+  bottom: 80px;
+  box-sizing: border-box;
+}
+
+div.o2-chat div.o2-messages div.o2-speech-bubble-right {
+  float: right;
+  margin: 16px;
+  padding: 16px;
+  position: relative;
+  background: #28a745;
+  color: #fff;
+  border-radius: 0.4em;
+  text-align: right;
+  max-width: 80%;
+}
+
+div.o2-chat div.o2-messages div.o2-speech-bubble-right:after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 17px solid transparent;
+  border-left-color: #28a745;
+  border-right: 0;
+  border-top: 0;
+  margin-top: -8.5px;
+  margin-right: -17px;
+}
+
+div.o2-chat div.o2-messages div.o2-speech-bubble-left {
+  float: left;
+  margin: 16px;
+  padding: 16px;
+  position: relative;
+  background: #343a40;
+  color: #fff;
+  border-radius: 0.4em;
+  max-width: 80%;
+}
+
+div.o2-chat div.o2-messages div.o2-speech-bubble-left:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 17px solid transparent;
+  border-right-color: #343a40;
+  border-left: 0;
+  border-top: 0;
+  margin-top: -8.5px;
+  margin-left: -17px;
+}
+
+div.o2-chat div.o2-messages div.o2-sender-right {
+  float: right;
+  margin: 16px 4px;
+  padding: 16px 4px;
+}
+
+div.o2-chat div.o2-messages div.o2-sender-right .fa-user {
+  color: #28a745;
+}
+
+div.o2-chat div.o2-messages div.o2-sender-left {
+  float: left;
+  margin: 16px 4px;
+  padding: 16px 4px;
+}
+
+div.o2-chat div.o2-messages div.o2-sender-left .fa-user {
+  color: #343a40;
+}
+
+/*
+chat: online users
+*/
+div.o2-chat div.o2-users {
+  border-right: 1px solid #ddd;
+  margin: 0;
+  padding: 0;
+}
+
+div.o2-chat div.o2-users ul li {
+  padding: 0;
+  border-right: 16px solid #ddd;
+}
+
+div.o2-chat div.o2-users ul li.o2-online-user {
+  border-right-color: #28a745;
+}
+
+div.o2-chat div.o2-users ul li:hover {
+  border-right-color: #343a40;
+}
+
+div.o2-chat div.o2-users ul li a.user-item {
+  color: #000;
+  display: block;
+  margin: 0;
+  padding: 8px;
+}
+
+div.o2-chat div.o2-users ul li a.user-item:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: #343a40;
+}
+
+div.o2-chat div.o2-users ul li a.user-item-active {
+  color: #28a745;
+}
+
+div.o2-chat div.o2-users ul li.o2-unread a.user-item {
+  background-color: lightgrey;
+}

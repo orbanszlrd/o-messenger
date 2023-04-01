@@ -1,0 +1,37 @@
+<% if (typeof user != 'undefined') { %>
+<nav
+  class="navbar navbar-expand-md navbar-dark fixed-top"
+  style="background-color: black"
+>
+  <img
+    src="/icons/icon-72x72.png"
+    style="width: 36px; height: 36px"
+    alt="opofa logo"
+  />
+  <a class="navbar-brand" href="/">OMessenger</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSuccess"
+    aria-controls="navbarSuccess"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSuccess">
+    <ul class="navbar-nav ml-auto">
+      <% if (typeof user != 'undefined') { %>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><%= user.name %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/users/logout">Logout</a>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+</nav>
+<% } %>
